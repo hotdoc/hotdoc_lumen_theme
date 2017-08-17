@@ -15,7 +15,7 @@ git add meson.build
 git commit -m "Release $version"
 git tag $version -m "Release $version"
 
-echo "Pushing PROJECT"
+echo "Pushing $PROJECT"
 git push origin master
 git push origin $version
 
