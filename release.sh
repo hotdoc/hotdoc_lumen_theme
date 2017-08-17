@@ -33,7 +33,11 @@ sha=`sha256sum $PROJECT-$1.tar.xz | cut -d ' ' -f 1`
 
 TXT="Update $PROJECT
 
-Pass --html-theme=https://github.com/$USER/$PROJECT/releases/download/$1/$PROJECT-$1.tar.xz?sha256=$sha to hotdoc to use as a theme.
+To use the theme, pass to hotdoc:
+
+\`\`\`
+--html-theme=https://github.com/$USER/$PROJECT/releases/download/$1/$PROJECT-$1.tar.xz?sha256=$sha
+\`\`\`
 
 Hotdoc bootstrap theme commit:
 
