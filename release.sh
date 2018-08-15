@@ -20,7 +20,7 @@ git push origin master
 git push origin $version
 
 cd subprojects/hotdoc_bootstrap_theme
-git pull --rebase
+git fetch && git checkout origin/master
 bootstrap_theme_commit=`git rev-list --format=%B --max-count=1 HEAD`
 cd -
 
