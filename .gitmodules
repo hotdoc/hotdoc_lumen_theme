@@ -1,4 +1,0 @@
-[submodule "subprojects/hotdoc_bootstrap_theme"]
-	path = subprojects/hotdoc_bootstrap_theme
-	url = https://github.com/hotdoc/hotdoc_bootstrap_theme
-	branch = gst
