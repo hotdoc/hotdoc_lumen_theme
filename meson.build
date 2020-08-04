@@ -1,4 +1,4 @@
-project('hotdoc_lumen_theme', 'c', version: '0.999999')
+project('hotdoc_lumen_theme', 'c', version: '0.9999999')
 
 theme = subproject('hotdoc_bootstrap_theme',
   default_options: ['less_include_path=' +
