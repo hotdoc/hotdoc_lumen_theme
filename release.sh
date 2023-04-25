@@ -27,7 +27,7 @@ cd -
 echo "Producing new release tarball"
 rm -Rf build/
 mkdir build/
-meson.py build/
+meson build/
 ninja -C build tar
 sha=`sha256sum $PROJECT-$1.tar.xz | cut -d ' ' -f 1`
 
