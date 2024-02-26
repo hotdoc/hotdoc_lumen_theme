@@ -5,7 +5,12 @@
 USER=hotdoc
 PROJECT=hotdoc_lumen_theme
 
-if [ -z ${1+x} ]; then echo "Need to pass new version as argument"; exit 1; else echo "Releasing $1"; fi
+gh --version
+
+if [ -z ${1+x} ]; then
+	echo "Need to pass new version as argument"
+	exit 1
+else echo "Releasing $1"; fi
 
 version=$1
 meson_projline="project('$PROJECT', 'c', version: '$version')"
@@ -21,7 +26,7 @@ git push origin $version
 
 cd subprojects/hotdoc_bootstrap_theme
 git fetch && git checkout origin/master
-bootstrap_theme_commit=`git rev-list --format=%B --max-count=1 HEAD`
+bootstrap_theme_commit=$(git rev-list --format=%B --max-count=1 HEAD)
 cd -
 
 echo "Producing new release tarball"
@@ -29,7 +34,7 @@ rm -Rf build/
 mkdir build/
 meson build/
 ninja -C build tar
-sha=`sha256sum $PROJECT-$1.tar.xz | cut -d ' ' -f 1`
+sha=$(sha256sum $PROJECT-$1.tar.xz | cut -d ' ' -f 1)
 
 TXT="Update $PROJECT
 
@@ -46,16 +51,8 @@ $bootstrap_theme_commit
 \`\`\`
 "
 
-github-release release \
-    --user $USER \
-    --repo $PROJECT \
-    --tag $version \
-    --name "Release $version" \
-    --description "$TXT"
+gh release create $version \
+	--title "Release $version" \
+	--notes "$TXT"
 
-github-release upload \
-    --user $USER \
-    --repo $PROJECT \
-    --tag $version \
-    --name $PROJECT-$1.tar.xz \
-    --file $PROJECT-$1.tar.xz
+gh release upload $version $PROJECT-$1.tar.xz
